@@ -46,7 +46,6 @@ app.post("/api/chat/stream", async (req: Request, res: Response) => {
   try {
     const threadOptions: ThreadOptions = {
       model: effectiveModel,
-      workingDirectory: "./",
       skipGitRepoCheck: true,
       webSearchEnabled: true,
       webSearchMode: "cached",
