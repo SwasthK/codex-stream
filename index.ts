@@ -50,7 +50,7 @@ app.post("/api/chat/stream", async (req: Request, res: Response) => {
       skipGitRepoCheck: true,
       webSearchEnabled: true,
       webSearchMode: "cached",
-      sandboxMode:"danger-full-access"
+      sandboxMode:"workspace-write"
     };
 
     const thread = threadId
