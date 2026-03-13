@@ -23,6 +23,7 @@ type ChatRequestBody = {
 
 app.post("/api/chat/stream", async (req: Request, res: Response) => {
   const { threadId, prompt, model }: ChatRequestBody = req.body || {};
+  const effectiveModel = model ?? "gpt-5-codex";
 
   if (!prompt) {
     res.status(400).json({ error: "Missing 'prompt' in request body" });
@@ -44,9 +45,12 @@ app.post("/api/chat/stream", async (req: Request, res: Response) => {
 
   try {
     const threadOptions: ThreadOptions = {
-      model,
+      model: effectiveModel,
       workingDirectory: "./",
       skipGitRepoCheck: true,
+      webSearchEnabled: true,
+      webSearchMode: "cached",
+      sandboxMode:"danger-full-access"
     };
 
     const thread = threadId
